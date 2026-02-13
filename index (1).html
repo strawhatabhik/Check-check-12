@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pragya ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', cursive;
+}
+
+body{
+overflow:hidden;
+background:black;
+color:white;
+}
+
+/* Pages */
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+transition:opacity 1s ease;
+opacity:0;
+pointer-events:none;
+}
+
+.page.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* Text */
+h1{
+font-size:40px;
+margin-bottom:20px;
+text-shadow:0 0 15px rgba(255,0,80,0.6);
+padding:20px;
+}
+
+.final-text{
+font-size:26px;
+max-width:90%;
+line-height:1.6;
+}
+
+/* Buttons */
+button{
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff4b6e,#ff1744);
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px rgba(255,0,80,0.6);
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* Background image page */
+.bg{
+background-size:cover;
+background-position:center;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+}
+
+/* Floating Hearts */
+.hearts{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+pointer-events:none;
+}
+
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation:floatUp linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop autoplay>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
+
+<audio id="clickSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_270c4a9a1c.mp3">
+</audio>
+
+<!-- HEARTS -->
+<div class="hearts" id="hearts"></div>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<h1>Will you be my valentine? ❤️</h1>
+<button onclick="nextPage()">Yes 😋</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h1>Awwwww my baby 😋</h1>
+<button onclick="nextPage()">suno suno 😙</button>
+</div>
+
+<!-- PAGE 3 IMAGE -->
+<div class="page bg" id="page3"
+style="background-image:url('https://raw.githubusercontent.com/strawhatabhik/Pic1/0a5c759b7685310e7b91a7aefcbcf30ff7938e7c/05e2bdd05ad64ba26dc5cceaabd0dd38.jpg');">
+
+<div class="overlay"></div>
+
+<button onclick="nextPage()" style="position:relative;">
+you are mineeeee 😏
+</button>
+
+</div>
+
+<!-- PAGE 4 IMAGE -->
+<div class="page bg" id="page4"
+style="background-image:url('https://raw.githubusercontent.com/strawhatabhik/Pic1/2b8300c89f106b590a838d86f5c72ded286af55e/RDT_20260106_1217534190376539112417035.jpg');">
+
+<div class="overlay"></div>
+
+<button onclick="nextPage()" style="position:relative;">
+Kuch or bhi kehna hai
+</button>
+
+</div>
+
+<!-- PAGE 5 FINAL -->
+<div class="page" id="page5">
+<div class="final-text">
+I love you Pragya, you'll always be my valentine, alsoooo  
+(i just love to express yawr 😋😖) <br><br>
+Im sooo muchh blessed to have youuuuu babyyyyyy 🧿🎀🫶🩷
+</div>
+</div>
+
+<script>
+let currentPage = 1;
+let totalPages = 5;
+
+let clickSound = document.getElementById("clickSound");
+
+function nextPage(){
+
+clickSound.currentTime = 0;
+clickSound.play();
+
+document.getElementById("page"+currentPage).classList.remove("active");
+
+currentPage++;
+
+if(currentPage<=totalPages){
+document.getElementById("page"+currentPage).classList.add("active");
+}
+}
+
+/* Floating Hearts Generator */
+let heartsContainer = document.getElementById("hearts");
+
+function createHeart(){
+
+let heart = document.createElement("div");
+heart.className = "heart";
+heart.innerHTML = "❤";
+
+heart.style.left = Math.random()*100+"%";
+heart.style.animationDuration = (4+Math.random()*4)+"s";
+heart.style.fontSize = (15+Math.random()*20)+"px";
+
+heartsContainer.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
